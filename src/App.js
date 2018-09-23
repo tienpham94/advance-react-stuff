@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import Toggle from "./ToggleRenderProps";
+import Portal from "./Portal";
 
 class App extends Component {
   render() {
@@ -19,6 +20,9 @@ class App extends Component {
             </Fragment>
           )}
         </Toggle>
+        <Portal>
+          <h1>Hi Im portal</h1>
+        </Portal>
       </div>
     );
   }
