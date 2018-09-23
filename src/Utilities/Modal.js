@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
-import Portal from "./Portal";
-import Icon from "./Icon";
+import { Portal, Icon } from "Utilities";
+import { Card } from "Elements";
 
 const ModalWrapper = styled.div`
   position: absolute;
