@@ -1,4 +1,7 @@
 import Portal from "./Portal";
 import Toggle from "./Toggle";
+import elevation from "./elevation";
+import transition from "./transition";
+import colors from "./colors";
 
-export { Portal, Toggle };
+export { Portal, Toggle, elevation, transition, colors };
