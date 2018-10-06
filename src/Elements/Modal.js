@@ -1,14 +1,32 @@
-import React, { Component } from "react";
-import styled from "styled-components";
+import React, { Component } from 'react';
+import styled from 'styled-components';
+import { Portal, absolute } from 'Utilities';
+import Icon from './Icon';
+import { Card } from './Cards';
 
-import { Portal } from "Utilities";
-import Icon from "./Icon";
-import { Card } from "./Cards";
+export default class Modal extends Component {
+  render() {
+    const { children, toggle, on } = this.props;
+    return (
+      <Portal>
+        {on && (
+          <ModalWrapper>
+            <ModalCard>
+              <CloseButton onClick={toggle}>
+                <Icon name="close" />
+              </CloseButton>
+              <div>{children}</div>
+            </ModalCard>
+            <Background onClick={toggle} />
+          </ModalWrapper>
+        )}
+      </Portal>
+    );
+  }
+}
 
 const ModalWrapper = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
+  ${absolute({})};
   width: 100%;
   height: 100%;
   display: flex;
@@ -20,45 +38,23 @@ const ModalCard = Card.extend`
   position: relative;
   min-width: 320px;
   z-index: 10;
-  margin-bottom: 10px;
+  margin-bottom: 100px;
 `;
 
 const CloseButton = styled.button`
-  position: absolute;
-  top: 0;
-  right: 0;
   border: none;
   background: transparent;
   padding: 10px;
+  ${absolute({
+    y: 'top',
+    x: 'right'
+  })};
 `;
 
 const Background = styled.div`
-  position: absolute;
+  ${absolute({})};
   width: 100%;
   height: 100%;
-  top: 0;
-  left: 0;
   background: black;
-  opacity: 0.3;
+  opacity: 0.5;
 `;
-
-export default class Modal extends Component {
-  render() {
-    const { children, toggle, on } = this.props;
-    return (
-      <Portal>
-        {on && (
-          <ModalWrapper>
-            <ModalCard>
-              <CloseButton onClick={toggle}>
-                <Icon name="close" color="red" />
-              </CloseButton>
-              <div>{this.props.children}</div>
-            </ModalCard>
-            <Background onClick={toggle} />
-          </ModalWrapper>
-        )}
-      </Portal>
-    );
-  }
-}
