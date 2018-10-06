@@ -12,9 +12,12 @@ class UserProvider extends Component {
     name: "scott",
     mail: "email"
   };
+
+  logout = () => this.setState({ id: null, name: "", mail: "" });
+
   render() {
     return (
-      <UserContext.Provider value={{ user: this.state }}>
+      <UserContext.Provider value={{ user: this.state, logout: this.logout }}>
         {this.props.children}
       </UserContext.Provider>
     );
@@ -43,6 +46,7 @@ class App extends Component {
                 )}
               </Toggle>
               <h3>{context && context.user.name}</h3>
+              <button onClick={context.logout}>Logout</button>
             </div>
           )}
         </UserContext.Consumer>
